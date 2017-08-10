@@ -1,0 +1,153 @@
+[user]
+	name = Beau Bennett
+	email = beau.bennett@beauknowssoftware.com
+[alias]
+	commit-quick = commit -m
+	cq = !git commit-quick
+
+	commit-quick-all = !git add -A && git commit -m
+	cqa = !git commit-quick-all
+
+	commit-all = !git add -A && git commit
+	ca = !git commit-all
+
+	savepoint = !git add -A && git commit -m 'SavePoint'
+	sp = !git savepoint
+
+	continue = reset HEAD~1 --mixed
+	backup = branch meta/backup
+
+	remove-backup = branch -D meta/backup
+	rb = !git remove-backup
+
+	safe-rebase = !git backup && git rebase --keep-empty --interactive
+	sr = !git safe-rebase
+	patch = add --patch
+
+	p = !git patch
+
+	start-feature = "!f() { git sync-develop; git checkout -b feature/"$1" develop; }; f"
+	sf = "!f() { git start-feature "$1"; }; f"
+
+	amend = commit --amend
+
+	amend-all = "!git add -A && git amend"
+
+	aq = "!git log -n 1 --pretty=tformat:%B | git commit -F - --amend"
+
+	aqa = "!git add -A && git aq"
+
+	finish-feature = "!f() { git sync-develop; git checkout develop; git merge --no-ff feature/"$1"; git af "$1"; }; f"
+	ff = "!f() { git finish-feature "$1"; }; f"
+
+	archive-feature = "!f() { git checkout feature/"$1"; git dpf "$1"; git branch -m meta/finished/"$1"; git push -u personal meta/finished/"$1"; git checkout develop; }; f"
+	af = "!f() { git archive-feature "$1"; }; f"
+
+	release = "!f() { git sync-develop; git checkout -b release/"$1" develop; git push origin release/"$1"; }; f"
+
+	finish-release = "!f() { git sync-master; git merge --no-ff release/"$1"; git tag "$1"; git sync-develop; git merge release/"$1"; git push origin master --tags; git push origin develop; git push origin :release/"$1"; }; f"
+
+	reconstitute = "!f() { git checkout meta/finished/"$1"; git push personal :meta/finished/"$1"; git branch -m feature/"$1"; git ppf "$1"; }; f"
+
+	between = "!f() { git ll "$1".."$2"; }; f"
+	between-short = "!f() { git ls "$1".."$2"; }; f"
+
+	since = "!f() { git between "$1" HEAD; }; f"
+	since-short = "!f() { git between-short "$1" HEAD; }; f"
+
+	feature-log = "!f() { git between develop feature/"$1"; }; f"
+	fl = !git feature-log
+	feature-log-short = "!f() { git between-short develop feature/"$1"; }; f"
+	fls = !git feature-log-short
+
+	current-feature-log = !git since develop
+	cfl = !git current-feature-log
+	current-feature-log-short = !git since-short develop
+	cfls = !git current-feature-log-short
+
+	release-log = !git log-between master develop
+	rl = !git release-log
+	release-log-short = !git log-between-short master develop
+	rls = !git release-log-short
+    
+	log-short = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graph
+	ls = !git log-short
+	log-long = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --name-only
+	ll = !git log-long
+	log-date-short = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+	lds = !git log-date-short
+	log-date-relative = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative --graph
+	ldr = !git log-date-relative
+
+	last-commit = diff --cached HEAD~
+	lc = !git last-commit
+	
+	show-aliases = "!git config -l | grep alias | cut -c 7- | less"
+
+	status-short = status -s -b
+	ss = !git status-short
+	
+	unstage = reset HEAD
+
+	edit-config = config --global --edit
+
+	branches = branch --list -vv
+
+	features = "!git branches feature/*"
+
+	deleted = ls-files -d
+
+	modified = ls-files -m
+
+	new = ls-files -o --exclude-standard
+
+        staged = ls-files -s
+
+	mass-delete = "!git rm $(git deleted)"
+
+	meta = "!git branches meta/*"
+
+	finished = "!git branches meta/finished/*"
+	
+	current-branch = rev-parse --abbrev-ref head
+	cb = "!git current-branch"
+
+	remote-branches = "!git branches -r"
+
+	origin = "!git remote-branches origin/*"
+
+	personal = "!git remote-branches personal/*"
+	personal-features = "!git remote-branches personal/feature/*"
+	personal-meta = "!git remote-branches personal/meta/*"
+	personal-finished = "!git remote-branches personal/meta/finished/*"
+
+	start = "!git init && git commit --allow-empty -m \"Initial Commit\" && git checkout -b develop"
+
+	ignore = "!f() { !([ ! -e .gitignore ] && touch .gitignore) | echo "$1" >>.gitignore; }; f"
+
+	push-personal-feature = "!f() { git checkout feature/"$1"; git push -u personal feature/"$1"; }; f"
+	ppf = "!f() { git push-personal-feature "$1"; }; f"
+
+	pcf = push -u personal 
+
+	delete-personal-feature = "!f() { git push personal :feature/"$1"; git branch --unset-upstream feature/"$1"; }; f"
+	dpf = "!f() { git delete-personal-feature "$1"; }; f"
+
+	replace-personal-feature = "!f() { git dpf "$1"; git ppf "$1"; }; f"
+	rpf = "!f() { git replace-personal-feature "$1"; }; f"
+
+	sync-develop = !git checkout develop && git pull origin develop
+	sync-master = !git checkout master && git pull origin master
+	sync = !git fetch origin && git checkout develop && git pull origin develop && git checkout master && git pull origin master
+
+	feature = "!f() { git checkout feature/"$1"; }; f"
+
+	master = checkout master
+
+	develop = checkout develop
+
+	what-changed = "!f() { git diff "$1"~.."$1"; }; f"
+	whatchanged = "!f() { git what-changed "$1"; }; f"
+	wc = "!f() { git what-changed "$1"; }; f"
+[push]
+	default = simple
