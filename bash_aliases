@@ -24,6 +24,8 @@ alias fs="stat -f \"%z bytes\""
 
 alias reload="source ~/.bashrc  && echo 'Shell config reloaded from ~/.bashrc'"
 
+alias cls='clear'
+
 if [ -f ~/.local_bash_aliases ]; then
   . ~/.local_bash_aliases
 fi
