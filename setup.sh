@@ -6,7 +6,9 @@ declare -a FILES_TO_SYMLINK=(
     'gitignore'
     'bash_profile'
     'bash_aliases'
+    #'bash_functions'
     'bashrc'
+    'inputrc'
 )
 
 for i in ${FILES_TO_SYMLINK[@]}; do

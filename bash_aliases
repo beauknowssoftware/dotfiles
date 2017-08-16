@@ -17,14 +17,19 @@ export CLICOLOR_FORCE=1
 alias ls='ls -Fh ${colorflag}'
 
 # List all files colorized in long format, including dot files
-alias la="ls -la ${colorflag}"
+alias la="ls -lhA ${colorflag}"
+alias ll='la'
 
 # File size
 alias fs="stat -f \"%z bytes\""
 
-alias reload="source ~/.bashrc  && echo 'Shell config reloaded from ~/.bashrc'"
+alias reload="source ~/.bash_profile  && echo 'Shell config reloaded from ~/.bash_profile'"
 
 alias cls='clear'
+
+alias path='echo -e ${PATH//:/\\n}'
+
+alias now='date +"%T"'
 
 if [ -f ~/.local_bash_aliases ]; then
   . ~/.local_bash_aliases

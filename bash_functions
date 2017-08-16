@@ -4,6 +4,15 @@ function md() {
   mkdir -p "$@" && cd "$@"
 }
 
-if [ -f ~/.bash_functions ]; then
-    source ~/.bash_functions
+function cd() {
+    command cd "$@"
+    ll
+}
+
+function mans() {
+    man "$1" | grep -iC2 --color=always -e "$2" | less
+}
+
+if [ -f ~/.local_bash_functions ]; then
+    source ~/.local_bash_functions
 fi
