@@ -31,6 +31,6 @@ alias path='echo -e ${PATH//:/\\n}'
 
 alias now='date +"%T"'
 
-if [ -f ~/.local_bash_aliases ]; then
-  . ~/.local_bash_aliases
+if [ -f ~/.bash_aliases.local ]; then
+  . ~/.bash_aliases.local
 fi

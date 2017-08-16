@@ -13,6 +13,6 @@ function mans() {
     man "$1" | grep -iC2 --color=always -e "$2" | less
 }
 
-if [ -f ~/.local_bash_functions ]; then
-    source ~/.local_bash_functions
+if [ -f ~/.bash_functions.local ]; then
+    source ~/.bash_functions.local
 fi

@@ -1,5 +1,5 @@
 [ -n "$PS1" ] && source ~/.bash_profile
 
-if [ -f ~/.local_bashrc ]; then
-    source ~/.local_bashrc
+if [ -f ~/.bashrc.local ]; then
+    source ~/.bashrc.local
 fi
