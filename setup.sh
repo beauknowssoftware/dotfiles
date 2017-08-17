@@ -8,7 +8,7 @@ declare -a FILES_TO_SYMLINK=(
 )
 
 for i in ${FILES_TO_SYMLINK[@]}; do
-    sourceFile="$(pwd)/$i"
+    sourceFile="$(pwd)/config/$i"
     targetFile="$HOME/.$i"
 
     if [ ! -e "$targetFile" ]; then
@@ -27,7 +27,7 @@ declare -a FILES_TO_SYMLINK_LOCAL=(
 )
 
 for i in ${FILES_TO_SYMLINK_LOCAL[@]}; do
-    sourceFile="$(pwd)/$i"
+    sourceFile="$(pwd)/config/$i"
     targetFile="$HOME/.$i"
     localTargetFile="$HOME/.local_$i"
 
