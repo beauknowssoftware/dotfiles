@@ -9,46 +9,49 @@ function cd() {
     ll
 }
 
-function awsCredsSet() {
-    local source="$HOME/.aws/$1.credentials"
-    local destination="$HOME/.aws/credentials"
-    if [ ! -e "$source" ]; then
-        echo "There are no $1 credentials"
-    else
-        rm "$destination"
-        ln -s "$source" "$destination"
-    fi
-}
-
-function awsCredsList() {
-    command ls -1 ~/.aws | grep -E "\.credentials" | sed s/\.credentials//
-}
-
-function awsCredsCurrent() {
-    local file=$(readlink ~/.aws/credentials | sed s/\.credentials//)
-    echo $(basename "$file")
-}
-
-function awsCredsDetails() {
-    cat ~/.aws/credentials | tail -2 
-}
-
 function awsCreds() {
+    function _awsCredsSet() {
+        export AWS_PROFILE="$1"
+    }
+
+    function _awsCredsDetails() {
+        aws configure list
+    }
+
+    function _awsCredsCurrent() {
+        echo "$AWS_PROFILE"
+    }
+
+    function _awsCredsList() {
+        less ~/.aws/credentials | grep -E "\[.*\]" | sed s/"\[\(.*\)\]"/\\1/g
+    }
+
+    function _awsCredsPick() {
+        profiles=($(_awsCredsList))
+        select profile in "${profiles[@]}"; do
+            _awsCredsSet "$profile"
+            break
+        done
+    }
+
     case "$1" in
-        set)
-            awsCredsSet "$2"
+        s|set)
+            _awsCredsSet "$2"
             ;;
-        list)
-            awsCredsList "$2"
+        l|list)
+            _awsCredsList 
             ;;
-        details)
-            awsCredsDetails
+        c|current)
+            _awsCredsCurrent
             ;;
-        current)
-            awsCredsCurrent
+        d|details)
+            _awsCredsDetails
+            ;;
+        p|pick)
+            _awsCredsPick
             ;;
         *)
-            echo $"Usage: awsCreds {set|list|current|details}"
+            echo $"Usage: awsCreds {set|list|current|details|pick}"
             return 1
             ;;
     esac
