@@ -1,5 +1,2 @@
 set completion-ignore-case on
 set show-all-if-ambiguous on
-"\e[Z": menu-complete
-"\e[A": history-search-backward
-"\e[B": history-search-forward
