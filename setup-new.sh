@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
-brew install nvm awscli terraform
-brew install yarn --without-node
-brew cask install flux 1password dropbox slack google-chrome
-
 # TODO: Need to install Office software
 
+./brew.sh
 ./install/shiftit.sh
 ./install/github-ssh.sh
 ./install/webstorm.sh

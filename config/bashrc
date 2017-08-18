@@ -4,7 +4,9 @@ export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
 eval "$(ssh-agent -s)"
-ssh-add -K ~/.ssh/beauknowssoftware_rsa
+/usr/bin/ssh-add -K ~/.ssh/beauknowssoftware_rsa
+
+. /usr/local/etc/profile.d/z.sh
 
 if [ -f ~/.bashrc.local ]; then
     source ~/.bashrc.local
