@@ -6,3 +6,7 @@ Install instructions
 4. `cat ~/.ssh/beauknowssoftware_rsa.pub | pbcopy`
 5. Add new SSH Key to Github
 6. `. ./swap.sh`
+
+Remaining Manual Steps
+* Log into Chrome
+* Cleanup Dock

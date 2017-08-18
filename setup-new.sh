@@ -17,3 +17,8 @@ rm shiftit.zip
 ./install/github-ssh.sh
 
 ./setup.sh
+
+open /Applications/1Password\ 6.app/
+open -a /Applications/Google\ Chrome.app/ https://github.com/settings/keys
+open /Applications/ShiftIt.app/
+open /Applications/Flux.app/
