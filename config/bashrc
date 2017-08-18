@@ -3,8 +3,10 @@ set -o vi
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-eval "$(ssh-agent -s)"
-/usr/bin/ssh-add -K ~/.ssh/beauknowssoftware_rsa
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval "$(ssh-agent -s)"
+    /usr/bin/ssh-add -K ~/.ssh/beauknowssoftware_rsa
+fi
 
 . /usr/local/etc/profile.d/z.sh
 
