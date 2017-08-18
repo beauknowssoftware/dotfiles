@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-brew install nvm awscli git terraform
+brew install nvm awscli terraform
 brew cask install flux 1password dropbox slack google-chrome
 
 # TODO: Doesn't quite work yet

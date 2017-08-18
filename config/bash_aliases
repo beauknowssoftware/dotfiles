@@ -31,6 +31,8 @@ alias path='echo -e ${PATH//:/\\n}'
 
 alias now='date +"%T"'
 
+alias +x='chmod +x'
+
 if [ -f ~/.bash_aliases.local ]; then
   . ~/.bash_aliases.local
 fi
