@@ -5,6 +5,7 @@ declare -a FILES_TO_SYMLINK=(
     'gitconfig'
     'gitignore'
     'inputrc'
+    'ssh/config'
 )
 
 for i in ${FILES_TO_SYMLINK[@]}; do
