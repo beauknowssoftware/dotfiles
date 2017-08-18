@@ -10,3 +10,5 @@ Install instructions
 Remaining Manual Steps
 * Log into Chrome
 * Cleanup Dock
+* Install Office apps
+* Setup  Webstorm
