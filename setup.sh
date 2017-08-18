@@ -41,4 +41,8 @@ for i in ${FILES_TO_SYMLINK_LOCAL[@]}; do
 
 done
 
+source $(brew --prefix nvm)/nvm.sh
+nvm install --lts
+nvm install node
+
 source ~/.bash_profile
