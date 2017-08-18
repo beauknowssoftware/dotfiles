@@ -27,6 +27,8 @@ alias now='date +"%T"'
 
 alias +x='chmod +x'
 
+alias git=hub
+
 if [ -f ~/.bash_aliases.local ]; then
   . ~/.bash_aliases.local
 fi

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-brew install nvm awscli terraform coreutils moreutils findutils grep openssh tree bash bash-completion2 z
+brew install nvm awscli terraform coreutils moreutils findutils grep openssh tree bash bash-completion2 z hub
 if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
   chsh -s /usr/local/bin/bash;
