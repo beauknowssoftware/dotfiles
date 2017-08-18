@@ -5,10 +5,7 @@ brew cask install flux 1password dropbox slack google-chrome
 
 # TODO: Need to install Office software
 
-curl -L https://github.com/fikovnik/ShiftIt/releases/download/version-1.6.3/ShiftIt-1.6.3.zip > shiftit.zip && unzip shiftit.zip
-mv ShiftIt.app /Applications
-rm shiftit.zip
-
+./install/shiftit.sh
 ./install/github-ssh.sh
 ./install/webstorm.sh
 
