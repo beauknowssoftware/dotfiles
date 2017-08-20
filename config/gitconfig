@@ -80,5 +80,7 @@
 	master = checkout master
 	develop = checkout develop
 
+    pull = !git pull --ff-only
+
 [push]
 	default = current
