@@ -36,10 +36,7 @@
 	p = add --patch
 
     # start feature
-    sf = "!f() { \
-        git sync-develop; \
-        git checkout -b feature/"$1" develop; \
-    }; f"
+    sf = !git checkout -b feature/"$1" develop
 
 	amend = commit --amend
 	amend-all = "!git add -A && git amend"
