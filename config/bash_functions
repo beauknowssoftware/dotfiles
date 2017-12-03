@@ -57,8 +57,6 @@ function awsCreds() {
     esac
 }
 
-source $(which assume-role)
-
 function aws_account_info {
   [ "$AWS_ACCOUNT_NAME" ] && [ "$AWS_ACCOUNT_ROLE" ] && echo "aws:($AWS_ACCOUNT_NAME:$AWS_ACCOUNT_ROLE) "
 }
