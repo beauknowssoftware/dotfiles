@@ -79,5 +79,10 @@
 
     pull = !git pull --ff-only
 
+    start = !git init && git commit --allow-empty -m \"Sentinal commit\"
+
 [push]
 	default = current
+[credential]
+	helper = !aws codecommit credential-helper $@
+	UseHttpPath = true

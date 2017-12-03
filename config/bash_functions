@@ -57,6 +57,39 @@ function awsCreds() {
     esac
 }
 
+source $(which assume-role)
+
+function aws_account_info {
+  [ "$AWS_ACCOUNT_NAME" ] && [ "$AWS_ACCOUNT_ROLE" ] && echo "aws:($AWS_ACCOUNT_NAME:$AWS_ACCOUNT_ROLE) "
+}
+
+function getAWSSession {
+    set -e
+
+    clearAWSSession
+
+    mfa="$1"
+
+    if [ -z "$mfa" ]; then
+        echo -n "mfa: "
+        read -s mfa
+    fi
+
+    serialNumber=$(aws sts get-caller-identity --output text --query "Arn" | sed "s/user/mfa/g")
+    session=($(aws sts get-session-token --serial-number "$serialNumber" --token-code "$mfa" --query "[Credentials.SecretAccessKey,Credentials.SessionToken,Credentials.AccessKeyId]" --output text))
+    export AWS_SECRET_ACCESS_KEY=${session[0]}
+    export AWS_SESSION_TOKEN=${session[1]}
+    export AWS_ACCESS_KEY_ID=${session[2]}
+
+    set +e
+}
+
+function clearAWSSession {
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_SESSION_TOKEN
+    unset AWS_ACCESS_KEY_ID
+}
+
 if [ -f ~/.bash_functions.local ]; then
     source ~/.bash_functions.local
 fi
