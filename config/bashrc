@@ -8,8 +8,6 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
     /usr/bin/ssh-add -K ~/.ssh/beauknowssoftware_rsa
 fi
 
-. /usr/local/etc/profile.d/z.sh
-
 if [ -f ~/.bashrc.local ]; then
     source ~/.bashrc.local
 fi
