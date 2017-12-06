@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+./brew.sh
+
 declare -a FILES_TO_SYMLINK=(
     'vimrc'
     'gitconfig'

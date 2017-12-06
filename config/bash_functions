@@ -11,7 +11,12 @@ function cd() {
 
 function awsCreds() {
     function _awsCredsSet() {
-        export AWS_PROFILE="$1"
+        if [ -z "$1" ]; then
+            echo "Missing profile"
+            echo $"Usage: awsCreds set [profile]"
+        else
+            export AWS_PROFILE="$1"
+        fi
     }
 
     function _awsCredsDetails() {

@@ -2,7 +2,6 @@
 
 # TODO: Need to install Office software
 
-./brew.sh
 ./install/shiftit.sh
 ./install/github-ssh.sh
 ./install/webstorm.sh
