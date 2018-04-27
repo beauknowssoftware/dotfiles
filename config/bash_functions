@@ -93,6 +93,10 @@ function clearAWSSession {
     unset AWS_ACCESS_KEY_ID
 }
 
+function clearKeyChain {
+    security delete-internet-password -s git-codecommit.us-east-1.amazonaws.com keychain: ~/Library/Keychains/login.keychain-db
+}
+
 if [ -f ~/.bash_functions.local ]; then
     source ~/.bash_functions.local
 fi
