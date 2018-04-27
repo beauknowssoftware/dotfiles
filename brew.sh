@@ -8,6 +8,7 @@ fi;
 brew install gnu-sed --with-default-names
 brew install yarn --without-node
 brew install vim --with-override-system-vi
+brew install watch
 brew install homebrew/dupes/nano
 brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
