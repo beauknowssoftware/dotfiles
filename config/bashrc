@@ -8,6 +8,10 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
     /usr/bin/ssh-add -K ~/.ssh/beauknowssoftware_rsa
 fi
 
+if [ -f /usr/local/share/bash-completion/bash_completion ]; then
+    . /usr/local/share/bash-completion/bash_completion
+fi
+
 if [ -f ~/.bashrc.local ]; then
     source ~/.bashrc.local
 fi
