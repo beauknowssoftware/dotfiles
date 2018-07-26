@@ -79,7 +79,7 @@
 
     pull = !git pull --ff-only
 
-    start = !git init && git commit --allow-empty -m \"Sentinal commit\"
+    start = !git init && git commit --allow-empty -m \"Sentinel commit\" && git tag sentinel head
 
 [push]
 	default = current

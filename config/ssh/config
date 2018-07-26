@@ -1,3 +1,7 @@
+Host git-codecommit.us-east-1.amazonaws.com
+ User APKAI6UICHMK563AFT6A
+ IdentityFile ~/.ssh/beauknowssoftware_codecommit_rsa
+
 Host *
  AddKeysToAgent yes
  IdentityFile ~/.ssh/beauknowssoftware_rsa
