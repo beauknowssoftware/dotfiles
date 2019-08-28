@@ -1,3 +1,7 @@
+[credential "https://git-codecommit.us-east-2.amazonaws.com"]
+    helper = !(security delete-internet-password -s git-codecommit.us-east-1.amazonaws.com keychain: ~/Library/Keychains/login.keychain-db > /dev/null 2>&1 || true) && aws codecommit credential-helper $@
+    UseHttpPath = true
+
 [color]
     ui = always
 
@@ -83,6 +87,3 @@
 
 [push]
 	default = current
-[credential]
-	helper = !aws codecommit credential-helper $@
-	UseHttpPath = true
