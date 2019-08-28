@@ -85,5 +85,9 @@
 
     start = !git init && git commit --allow-empty -m \"Sentinel commit\" && git tag sentinel head
 
+    wip = !git cqa WIP
+
+    unwip = !git reset head~
+
 [push]
 	default = current
