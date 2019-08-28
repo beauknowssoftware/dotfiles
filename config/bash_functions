@@ -95,6 +95,9 @@ function clearAWSSession {
 
 function clearKeyChain {
     security delete-internet-password -s git-codecommit.us-east-1.amazonaws.com keychain: ~/Library/Keychains/login.keychain-db
+    security delete-internet-password -s git-codecommit.us-east-2.amazonaws.com keychain: ~/Library/Keychains/login.keychain-db
+    security delete-internet-password -s git-codecommit.us-west-1.amazonaws.com keychain: ~/Library/Keychains/login.keychain-db
+    security delete-internet-password -s git-codecommit.us-west-2.amazonaws.com keychain: ~/Library/Keychains/login.keychain-db
 }
 
 if [ -f ~/.bash_functions.local ]; then
