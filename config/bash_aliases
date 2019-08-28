@@ -29,6 +29,10 @@ alias +x='chmod +x'
 
 alias git=hub
 
+alias makes='make -s'
+alias tmake='time make'
+alias tmakes='time make -s'
+
 if [ -f ~/.bash_aliases.local ]; then
   . ~/.bash_aliases.local
 fi
