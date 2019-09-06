@@ -9,6 +9,11 @@ function cd() {
     ll
 }
 
+function ebash() {
+    echo "Starting new bash shell for $1 environment"
+    ENV=$1 bash -l
+}
+
 function awsCreds() {
     function _awsCredsSet() {
         if [ -z "$1" ]; then
