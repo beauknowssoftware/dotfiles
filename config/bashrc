@@ -3,6 +3,8 @@ set -o vi
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
+complete -W "\`make -qp | sed -n -E 's/^([^.#\s][^:=]*)(:$|:\s+.*$)/\1/p' | sort -u\`" make
+
 if [ -z "$SSH_AUTH_SOCK" ] ; then
     eval "$(ssh-agent -s)"
     /usr/bin/ssh-add -K ~/.ssh/beauknowssoftware_rsa
@@ -15,24 +17,4 @@ fi
 if [ -f ~/.bashrc.local ]; then
     source ~/.bashrc.local
 fi
-
-function _makefile_targets {
-    local curr_arg;
-    local targets;
-
-    # Find makefile targets available in the current directory
-    targets=''
-    if [[ -e "$(pwd)/Makefile" ]]; then
-        targets=$( \
-            grep -oE '^[a-zA-Z0-9_-]+:' Makefile \
-            | sed 's/://' \
-            | tr '\n' ' ' \
-        )
-    fi
-
-    # Filter targets based on user input to the bash completion
-    curr_arg=${COMP_WORDS[COMP_CWORD]}
-    COMPREPLY=( $(compgen -W "${targets[@]}" -- $curr_arg ) );
-}
-complete -F _makefile_targets make
 
